@@ -58,6 +58,12 @@ function! NumbersToggle()
     endif
 endfunc
 
+function! NumbersNone()
+    call NumbersDisable()
+    set norelativenumber
+    set nonumber
+endfunc
+
 function! ResetNumbers()
     if(g:center == 0)
         set number
@@ -80,6 +86,10 @@ endfunc
 
 function! NumbersEnable()
     let g:enable_numbers = 1
+    " Call ResetNumbers here to get things running again if NumbersNone has
+    " been called, even though that means running ResetNumber twice when
+    " BufNewFile an BufReadPost happen.
+    call ResetNumbers()
     augroup NumbersAug
         au!
         autocmd InsertEnter * :call SetNumbers()
@@ -108,6 +118,7 @@ endfunc
 
 " Commands
 command! -nargs=0 NumbersToggle call NumbersToggle()
+command! -nargs=0 NumbersNone call NumbersNone()
 command! -nargs=0 NumbersEnable call NumbersEnable()
 command! -nargs=0 NumbersDisable call NumbersDisable()
 command! -nargs=0 NumbersOnOff call NumbersOnOff()

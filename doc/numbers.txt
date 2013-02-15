@@ -51,6 +51,15 @@ For convenience you may want to add a mapping for |:NumbersToggle| and
     Note that this toggles the kind of line numbers being shown -- it does not
     toggle the plugin itself. For that, see |:NumbersOnOff|.
 
+:NumbersNone                                                    *:NumbersNone*
+    Turn off all numbering.
+
+    This calls |:NumbersDisable| and then sets both |norelativenumber| and
+    |nonumber|. Note that once |:NumbersNone| is called, in order to re-enable
+    the contextual switching you must run either |:NumbersEnable| or
+    |:NumbersOnOff|. Simply calling |:NumbersToggle| only shows line numbers
+    it does not re-enable the switching.
+
 :NumbersEnable                                                *:NumbersEnable*
     Enable contextual |relativenumber| / |number| switching.
 
